@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+battery () {
+    bat=$(ls /sys/class/power_supply/ | grep CMB | head)
+    cap=$(cat /sys/class/power_supply/$bat/capacity)
+    status=$(cat /sys/class/power_supply/$bat/status)
+    printf "Battery: %d%% (%s)" "$cap" "$status"
+}
+
+netw () {
+    ssid=$(wpa_cli status | grep ssid | grep -v bssid \
+        | awk -F= '{print $2}' || echo "n/a")
+    rssi=$(wpa_cli signal_poll | grep RSSI | head -n1 | awk -F= '{print $2}')
+    perc=$(bc <<<"($rssi+100)*2")
+    printf "%s: %s%%" "$ssid" "$perc"
+}
+
+disk () {
+    printf "Disk usage: %s" $(df -htext4 | tail -n+2 \
+        | grep sda | awk '{printf "%s/%s", $3, $4}')
+}
+
+date_ () {
+    date +'%a %e %b %H:%M'
+}
+
+nix_store () {
+    sz=$(du -sh /nix/store | awk '{print $1}')
+    printf "Nix store: %s" $sz
+}
+
+vol () {
+    dec=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F: '{print $2}')
+    perc=$(bc <<<"$dec*100" | awk -F. '{print $1}')
+    name=$(wpctl inspect @DEFAULT_AUDIO_SINK@ | grep alsa.name | awk -F\" '{print $2}')
+    printf "%s: %s%%" "$name" "$perc"
+}
+
+while :; do
+    echo "`nix_store` | `vol` | `battery` | `netw` | `disk` | `date_` "
+    (sleep 10s)
+done

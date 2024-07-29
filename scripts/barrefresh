@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+kill "$(pstree -lp | grep -- -swaybar\([0-9] | sed "s/.*sleep(\([0-9]\+\)).*/\1/")"
+

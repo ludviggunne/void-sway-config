@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+mkdir -p $HOME/.config/sway
+mkdir -p $HOME/.config/foot
+mkdir -p $HOME/.config/wofi
+mkdir -p $HOME/.scripts
+
+ln -sf $PWD/.vimrc $HOME/.vimrc
+ln -sf $PWD/.bash_profile $HOME/.bash_profile
+ln -sf $PWD/.bashrc $HOME/.bashrc
+ln -sf $PWD/.gitconfig $HOME/.gitconfig
+ln -sf $PWD/sway/config $HOME/.config/sway/
+ln -sf $PWD/foot/foot.ini $HOME/.config/foot/
+ln -sf $PWD/wofi/style.css $HOME/.config/wofi/
+
+chmod +x scripts/*
+rsync -r $PWD/scripts/* $HOME/.scripts
