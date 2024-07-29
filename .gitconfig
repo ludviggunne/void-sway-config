@@ -1,0 +1,9 @@
+[user]
+	name = Ludvig Gunne Lindström
+	email = ludvig.gunne.lindstrom.dev@proton.me
+[core]
+	editor = vim
+[alias]
+	ci = commit
+	st = status
+	ap = add --patch
