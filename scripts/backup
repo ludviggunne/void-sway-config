@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e
+
+cleanup ()
+{
+    sudo umount /mnt
+    sync
+
+    printf "Encrypting..."
+    sudo cryptsetup close usb
+    echo " done!"
+}
+
+devices=$(lsblk -lp | cut -d' ' -f-2 | tail -n+2 | grep -v sda)
+select device in $devices
+do
+    sudo cryptsetup open "$device" usb
+    sudo mount /dev/mapper/usb /mnt
+    trap cleanup EXIT
+
+    sudo mkdir -p /mnt/conf /mnt/secrets/
+
+    printf "Syncing configuration..."
+    sudo rsync -r $HOME/conf/* /mnt/conf/
+    echo " done!"
+
+    printf "Syncing secrets..."
+    sudo rsync -r $HOME/.password-store $HOME/.gnupg /mnt/secrets
+    echo " done!"
+
+    exit 0
+done

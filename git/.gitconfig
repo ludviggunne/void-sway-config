@@ -2,7 +2,7 @@
 	name = Ludvig Gunne Lindström
 	email = ludvig.gunne.lindstrom.dev@proton.me
 [core]
-	editor = vim
+	editor = hx
 [alias]
 	ci = commit
 	st = status

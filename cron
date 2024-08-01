@@ -1,0 +1,1 @@
+@daily /bin/nix-store --gc

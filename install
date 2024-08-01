@@ -3,15 +3,25 @@
 mkdir -p $HOME/.config/sway
 mkdir -p $HOME/.config/foot
 mkdir -p $HOME/.config/wofi
+mkdir -p $HOME/.config/nix
+mkdir -p $HOME/.config/dunst
+mkdir -p $HOME/.config/helix
+mkdir -p $HOME/.config/helix/themes
 mkdir -p $HOME/.scripts
 
-ln -sf $PWD/.vimrc $HOME/.vimrc
-ln -sf $PWD/.bash_profile $HOME/.bash_profile
-ln -sf $PWD/.bashrc $HOME/.bashrc
-ln -sf $PWD/.gitconfig $HOME/.gitconfig
-ln -sf $PWD/sway/config $HOME/.config/sway/
-ln -sf $PWD/foot/foot.ini $HOME/.config/foot/
-ln -sf $PWD/wofi/style.css $HOME/.config/wofi/
+ln -sf $PWD/vim/.vimrc		      $HOME
+ln -sf $PWD/bash/.bash_profile	$HOME
+ln -sf $PWD/bash/.bashrc	      $HOME
+ln -sf $PWD/git/.gitconfig	    $HOME
+ln -sf $PWD/sway/config		      $HOME/.config/sway/
+ln -sf $PWD/foot/foot.ini	      $HOME/.config/foot/
+ln -sf $PWD/wofi/style.css	    $HOME/.config/wofi/
+ln -sf $PWD/nix/nix.conf	      $HOME/.config/nix/
+ln -sf $PWD/dunst/dunstrc	      $HOME/.config/dunst/
+ln -sf $PWD/helix/config.toml	  $HOME/.config/helix/
+ln -sf $PWD/helix/themes/*      $HOME/.config/helix/themes/
 
 chmod +x scripts/*
 rsync -r $PWD/scripts/* $HOME/.scripts
+
+crontab $PWD/cron

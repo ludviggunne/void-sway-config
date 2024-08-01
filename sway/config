@@ -1,33 +1,21 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
+# Pipewire
 exec pipewire
+# Notifications
+exec dunst
+# Listen to wpa_supplicant events and update bar
+exec wpa_cli -Ba $HOME/.scripts/wpa-action
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
 set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
 set $menu wofi --show run | xargs swaymsg exec --
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg ~/Pictures/elk.jpg fill
-#
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -48,19 +36,16 @@ output * bg ~/Pictures/elk.jpg fill
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
 input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout se
 }
 
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
 gaps inner 8
 gaps outer 8
-
-default_border none
-default_floating_border none
+default_border pixel 2
+default_floating_border pixel 2
 
 ### Key bindings
 #
@@ -202,7 +187,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+u exec volup
 bindsym $mod+Shift+d exec voldwn
-bindsym $mod+b exec qutebrowser
+bindsym $mod+b exec $BROWSER
 
 #
 # Status Bar:
@@ -219,7 +204,11 @@ bar {
         statusline #ffffff
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
+        active_workspace #5c5c5c #ffab57 #5c5c5c
+        focused_workspace #5c5c5c #ffab57 #5c5c5c
     }
 }
+
+client.focused #ff0000 #ffab57 #ffffff
 
 include /etc/sway/config.d/*

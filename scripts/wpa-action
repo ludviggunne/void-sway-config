@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+case "$2" in
+	CONNECTED)
+		ssid=$(wpa_cli status \
+			| grep ssid \
+			| grep -v bssid \
+			| cut -d= -f2)
+		notify-send "$1" "Connected to $ssid"
+		;;
+	DISCONNECTED)
+		notify-send "$1" "Disconnected from wireless network"
+		;;
+esac
+barrefresh

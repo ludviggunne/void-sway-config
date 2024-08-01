@@ -1,0 +1,24 @@
+theme = "transparent"
+
+[editor]
+line-number = "relative"
+mouse = false
+statusline.center = [ "version-control" ]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[keys.normal]
+C-h = [ "flip_selections" ]
+C-j = [ "goto_next_paragraph" ]
+C-k = [ "goto_prev_paragraph" ]
+
+[keys.select]
+C-h = [ "flip_selections" ]
+C-j = [ "goto_next_paragraph" ]
+C-k = [ "goto_prev_paragraph" ]

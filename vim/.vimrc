@@ -14,13 +14,17 @@ colorscheme slate
 set scrolloff=12
 
 " Default tab settings
-set expandtab softtabstop=4 tabstop=4 shiftwidth=4 smarttab
+set softtabstop=8 tabstop=8 shiftwidth=8 smarttab
+set autoindent
+filetype plugin indent on
+"set expandtab
 
 " Recursive search for 'find' etc.
-set path+=**
+set path=**
 
 " Show list of matches in command line
 set wildmenu wildoptions+=pum wildoptions+=fuzzy wildignore+=*.o,*/.git
+set wildignorecase
 
 " Incremental search
 set incsearch
@@ -37,6 +41,9 @@ let &t_EI = "\e[2 q"
 
 " Enable transparent background
 hi Normal guibg=NONE ctermbg=NONE
+
+" Don't highlight matching parenthesis
+let g:loaded_matchparen=1
 
 " Netrw
 let g:netrw_banner=0
@@ -69,8 +76,18 @@ let g:mapleader = ","
 
 nnoremap <leader>f :find<space>
 
-" C-r for replacing occurences of selected text, with prompts
-vnoremap <leader>r "hy:%s/<C-r>h//gc<left><left><left>
+" For replacing occurences of selected text, with prompts
+vnoremap <leader>r "hy:.,$s/<C-r>h//gc<left><left><left>
 
 " Same but in normal mode. Replaces the word under the cursor
-nnoremap <leader>r viw"hy:%s/<C-r>h//gc<left><left><left>
+nnoremap <leader>r viw"hy:.,$s/<C-r>h//gc<left><left><left>
+
+" PLUGINS
+
+call plug#begin()
+    Plug 'luisjure/csound-vim'
+call plug#end()
+
+" CSOUND
+" Don't fold automatically
+autocmd Syntax csound normal zR
