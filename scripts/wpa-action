@@ -8,7 +8,7 @@ case "$2" in
 		notify-send "$1" "Connected to $ssid"
 		;;
 	DISCONNECTED)
-		notify-send "$1" "Disconnected from wireless network"
+		notify-send "$1" "Disconnected"
 		;;
 esac
 barrefresh

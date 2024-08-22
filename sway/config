@@ -16,6 +16,8 @@ set $menu wofi --show run | xargs swaymsg exec --
 
 output * bg ~/Pictures/elk.jpg fill
 
+font Terminus Medium 11
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -42,8 +44,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout se
 }
 
-gaps inner 8
-gaps outer 8
+gaps inner 2
+gaps outer 2
 default_border pixel 2
 default_floating_border pixel 2
 

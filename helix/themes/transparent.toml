@@ -1,2 +1,4 @@
-inherits = "everforest_dark"
+inherits = "ferra"
 "ui.background" = {}
+"ui.linenr" = {}
+"ui.linenr.selected" = {}

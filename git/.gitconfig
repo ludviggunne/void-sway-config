@@ -7,3 +7,5 @@
 	ci = commit
 	st = status
 	ap = add --patch
+[advice]
+	addIgnoredFile = false

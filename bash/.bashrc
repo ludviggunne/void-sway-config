@@ -3,6 +3,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Disable warnings since nix-shell usually takes some time
+export DIRENV_WARN_TIMEOUT='-1s'
 eval "$(direnv hook bash)"
 
 alias ls='ls --color=auto -l'
