@@ -1,4 +1,4 @@
-inherits = "ferra"
+inherits = "poimandres"
 "ui.background" = {}
 "ui.linenr" = {}
 "ui.linenr.selected" = {}
