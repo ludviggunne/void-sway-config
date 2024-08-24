@@ -1,5 +1,9 @@
 # .bash_profile
 
+export TERM_PWD_CACHE_DIR=$HOME/.cache/termpwd
+mkdir -p $TERM_PWD_CACHE_DIR
+rm -f $TERM_PWD_CACHE_DIR/*
+
 # Get the aliases and functions
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
 

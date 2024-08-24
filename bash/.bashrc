@@ -29,3 +29,19 @@ shopt -s extglob
 shopt -s dotglob
 shopt -s cdspell
 shopt -s checkwinsize
+
+# Just copied from 'direnv hook bash'
+pwd_save_hook() {
+  local previous_exit_status=$?;
+  trap -- '' SIGINT;
+  pwd > $TERM_PWD_CACHE_DIR/${PPID}
+  trap - SIGINT;
+  return $previous_exit_status;
+};
+if [[ ";${PROMPT_COMMAND[*]:-};" != *";pwd_save_hook;"* ]]; then
+  if [[ "$(declare -p PROMPT_COMMAND 2>&1)" == "declare -a"* ]]; then
+    PROMPT_COMMAND=(pwd_save_hook "${PROMPT_COMMAND[@]}")
+  else
+    PROMPT_COMMAND="pwd_save_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+  fi
+fi
