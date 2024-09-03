@@ -14,7 +14,8 @@ alias xi='xbps-install -S'
 alias xr='xbps-remove -R'
 alias svs='sudo sv status /var/service/*'
 
-PS1='[\u@\h \W] \$ '
+. git-prompt.sh
+PS1='[\u@\h \W$(__git_ps1)] \$ '
 
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion

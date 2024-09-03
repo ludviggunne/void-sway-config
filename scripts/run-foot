@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+PID=$(swaymsg -t get_tree \
+	| jq '.. | select(.type?) | select(.focused==true) | .pid')
+
+FILE="$TERM_PWD_CACHE_DIR/$PID"
+
+if [ -e $FILE ]; then
+	exec foot -D $(< $FILE)
+else
+	exec foot
+fi
