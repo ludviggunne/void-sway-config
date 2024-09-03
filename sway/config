@@ -16,7 +16,7 @@ set $menu wofi --show run | xargs swaymsg exec --
 
 output * bg ~/Pictures/alhambra.jpg fill
 
-font Terminus Medium 11
+font ComicShannsMono Medium 11
 
 # Example configuration:
 #
@@ -189,6 +189,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+u exec volup
 bindsym $mod+Shift+d exec voldwn
+bindsym $mod+Shift+m exec mute
 bindsym $mod+b exec $BROWSER
 
 #

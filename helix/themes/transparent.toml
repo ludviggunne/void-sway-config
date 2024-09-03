@@ -1,4 +1,4 @@
-inherits = "starlight"
+inherits = "poimandres"
 "ui.background" = {}
 "ui.linenr" = {}
 "ui.linenr.selected" = {}
